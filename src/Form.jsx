@@ -1,5 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import Question from "./Question";
 
-const Form = () => {};
+const Form = ({ title, questions }) => {
+  return (
+    <>
+      <h1>{title}</h1>
+      {questions.map(question => {
+        return <Question text={question.text} options={question.options} />;
+      })}
+    </>
+  );
+};
 
 export default Form;
