@@ -6,7 +6,13 @@ const Form = ({ title, questions }) => {
     <>
       <h1>{title}</h1>
       {questions.map(question => {
-        return <Question text={question.text} options={question.options} />;
+        return (
+          <Question
+            key={question.text}
+            text={question.text}
+            options={question.options}
+          />
+        );
       })}
     </>
   );

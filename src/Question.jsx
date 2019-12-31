@@ -7,7 +7,7 @@ const Question = ({ text, options }) => {
       <form>
         {options.map(option => {
           return (
-            <label>
+            <label key={option}>
               <input type="radio" name="group" value={option} />
               {option}
             </label>
