@@ -1,5 +1,6 @@
 import React from "react";
 import Question from "./Question";
+import CreateForm from "./CreateForm";
 
 const Form = ({ title, questions }) => {
   return (
@@ -14,6 +15,7 @@ const Form = ({ title, questions }) => {
           />
         );
       })}
+      <CreateForm />
     </>
   );
 };
