@@ -3,28 +3,25 @@ import React, { useState } from "react";
 const UserInput = () => {
   const [data, setData] = useState({
     question: "",
-    options: []
+    options: ["", "", "", ""]
   });
 
   const nums = [1, 2, 3, 4];
 
   const handleChange = e => {
-    // setData({
-    //   ...data,
-    //   [e.target.name]: e.target.value
-    // });
-
-    setData({
-      ...data,
-      [e.target.name]: e.target.value
-    });
+    if (e.target.name === "question") {
+      setData({ ...data, question: e.target.value });
+    } else {
+      const { options } = data;
+      options[e.target.name] = e.target.value;
+      setData({ ...data, options });
+    }
     console.log(data);
   };
 
   const handleSubmit = () => {
-    // setData({
-    //   question:
-    // })
+    // send CREATE request
+    // clear the form fields on html
   };
 
   return (
@@ -43,11 +40,11 @@ const UserInput = () => {
         </div>
         {nums.map((value, index) => {
           return (
-            <div className="col m6 s12">
+            <div className="col m6 s12" key={`${index}`}>
               <label htmlFor="options">Option {value} : </label>
               <input
-                id={`option {value}`}
-                name={index}
+                id={`option ${value}`}
+                name={`${index}`}
                 type="tel"
                 maxLength="200"
                 placeholder="Enter your option here"
