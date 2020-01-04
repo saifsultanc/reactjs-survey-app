@@ -15,7 +15,7 @@ const Form = ({ title, questions }) => {
           />
         );
       })}
-      <CreateForm />
+      <CreateForm questions={questions} />
     </>
   );
 };

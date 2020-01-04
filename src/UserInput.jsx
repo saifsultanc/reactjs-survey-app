@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UserInput = () => {
+const UserInput = ({ questions }) => {
   const [data, setData] = useState({
     question: "",
     options: ["", "", "", ""]
@@ -19,8 +19,56 @@ const UserInput = () => {
     console.log(data);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     // send CREATE request
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+      if (req.readyState === XMLHttpRequest.DONE) {
+        console.log(req.responseText);
+      }
+    };
+
+    req.open(
+      "PUT",
+      "https://api.jsonbin.io/b/5e09f7fa32536c77d6787c2d/",
+      false
+    );
+    req.setRequestHeader(
+      "secret-key",
+      "$2b$10$wJ0vzO4WCWzkmrBmRHpemeUADwt74vhLkrxYyoSITR3gGRmsh074W"
+    );
+    req.setRequestHeader("Content-type", "application/json");
+    req.setRequestHeader("versioning", false);
+
+    let toSend = `{
+      "questions": [`;
+
+    for (let i = 0; i < questions.length; i++) {
+      toSend += `{
+          "text": "${questions[i].text}",
+          "options": [
+            "${questions[i].options[0]}",
+            "${questions[i].options[1]}",
+            "${questions[i].options[2]}",
+            "${questions[i].options[3]}"
+          ]
+        },`;
+    }
+
+    toSend += `{
+              "text": "${data.question}",
+              "options": [
+                "${data.options[0]}",
+                "${data.options[1]}",
+                "${data.options[2]}",
+                "${data.options[3]}"
+              ]
+            }
+          ]
+        }`;
+    req.send(toSend);
     // clear the form fields on html
   };
 

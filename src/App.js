@@ -25,7 +25,7 @@ function App() {
       }
     };
 
-    req.open("GET", "https://api.jsonbin.io/b/5e09f7fa32536c77d6787c2d", true);
+    req.open("GET", "https://api.jsonbin.io/b/5e09f7fa32536c77d6787c2d/", true);
     req.setRequestHeader(
       "secret-key",
       "$2b$10$wJ0vzO4WCWzkmrBmRHpemeUADwt74vhLkrxYyoSITR3gGRmsh074W"

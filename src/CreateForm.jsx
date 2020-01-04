@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import UserInput from "./UserInput";
 
-const CreateForm = () => {
+const CreateForm = ({ questions }) => {
   const [enabled, setEnabled] = useState(false);
 
   const handleEnable = () => {
@@ -10,7 +10,7 @@ const CreateForm = () => {
   return (
     <>
       <button onClick={handleEnable}>Create Question</button>
-      {enabled && <UserInput />}
+      {enabled && <UserInput questions={questions} />}
     </>
   );
 };
