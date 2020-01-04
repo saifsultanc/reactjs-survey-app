@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const UserInput = ({ questions }) => {
+const UserInput = ({ handleEnable, questions, updateQuestions }) => {
   const [data, setData] = useState({
     question: "",
     options: ["", "", "", ""]
@@ -16,12 +16,19 @@ const UserInput = ({ questions }) => {
       options[e.target.name] = e.target.value;
       setData({ ...data, options });
     }
-    console.log(data);
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    // send CREATE request
+  const handleSubmit = () => {
+    // get the state data and reset the user input form
+    const { question, options } = data;
+    setData({
+      question: "",
+      options: ["", "", "", ""]
+    });
+    handleEnable();
+    updateQuestions();
+
+    // send the JSON request
     let req = new XMLHttpRequest();
 
     req.onreadystatechange = () => {
@@ -58,18 +65,17 @@ const UserInput = ({ questions }) => {
     }
 
     toSend += `{
-              "text": "${data.question}",
+              "text": "${question}",
               "options": [
-                "${data.options[0]}",
-                "${data.options[1]}",
-                "${data.options[2]}",
-                "${data.options[3]}"
+                "${options[0]}",
+                "${options[1]}",
+                "${options[2]}",
+                "${options[3]}"
               ]
             }
           ]
         }`;
     req.send(toSend);
-    // clear the form fields on html
   };
 
   return (

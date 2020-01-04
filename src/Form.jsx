@@ -2,7 +2,7 @@ import React from "react";
 import Question from "./Question";
 import CreateForm from "./CreateForm";
 
-const Form = ({ title, questions }) => {
+const Form = ({ title, questions, updateQuestions }) => {
   return (
     <>
       <h1>{title}</h1>
@@ -15,7 +15,7 @@ const Form = ({ title, questions }) => {
           />
         );
       })}
-      <CreateForm questions={questions} />
+      <CreateForm questions={questions} updateQuestions={updateQuestions} />
     </>
   );
 };
