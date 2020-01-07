@@ -8,9 +8,9 @@ const Scoreboard = () => {
   };
 
   return (
-    <div class="scoreboard" handleScore={updateScore}>
-      <h2 class="score">Score</h2>
-      <span class="score fancy-text">{score}</span>
+    <div className="scoreboard">
+      <h2 className="score">Score</h2>
+      <span className="score fancy-text">{score}</span>
     </div>
   );
 };
